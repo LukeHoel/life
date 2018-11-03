@@ -5,7 +5,7 @@ myApp.controller('lifeController', ['$scope', '$interval', function($scope, $int
   vm.interval = 10;
   vm.paused = true;
 
-  vm.blur = true;
+  vm.blur = false;
 
   //generate grid
   vm.initGrid = function(){
