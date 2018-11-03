@@ -14,5 +14,40 @@ myApp.controller('lifeController', ['$scope', function($scope) {
     }
     vm.grid.push(row);
   }
-  
+
+  vm.step = function(){
+    for(var i = 0; i < vm.size; i ++){
+      for(var o = 0; o < vm.size; o ++){
+        var neighborCount = countNeighbors(i,o);
+        //do different things depending on whether cell is 'alive' or not
+        switch(vm.grid[i][o]){
+          case(0):
+            if(neighborCount < 2 || neighborCount > 3){
+              //the cell dies
+              vm.grid[i,o] = 0;
+            }
+          break;
+          case(1):
+            if(neighborCount == 3){
+              //new cell created
+              vm.grid[i,o] = 1;
+            }
+          break;
+        }
+      }
+    }
+  }
+
+  var countNeighbors = function(row,column){
+    var neighbors = 0;
+    for(var i = -1; i < 2; i ++){
+      for(var o = -1; o < 2; o ++){
+        if(vm.grid[i,o]){
+          neighbors ++;
+        }
+      }
+    }
+    return neighbors;
+  }
+
 }]);
