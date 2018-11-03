@@ -21,11 +21,15 @@
       td:hover{
         background-color:green !important;
       }
+      .trans{
+        -webkit-transition: all .5s;
+        transition: all .5s;
+      }
     </style>
 
     <table cellspacing="0" cellpadding="0">
       <tr ng-repeat="row in vm.grid track by $index">
-        <td ng-repeat="cell in row track by $index" ng-style="{'background-color':cell ? 'yellow':'black'}" ng-click="vm.placeConstruct($parent.$index,$index);">
+        <td ng-repeat="cell in row track by $index" ng-class="{trans: !cell && vm.blur}"ng-style="{'background-color':cell ? 'yellow':'black'}" ng-click="vm.placeConstruct($parent.$index,$index);">
         </td>
       </tr>
     </table>
@@ -37,6 +41,12 @@
       <br>
       <br>
       <button ng-click="vm.initGrid()">Clear Grid</button>
+      <br>
+      <br>
+      <button ng-click="vm.paused = !vm.paused">{{vm.paused ? "Start":"Stop"}} Simulation</button>
+      <br>
+      <br>
+      <button ng-click="vm.blur = !vm.blur">{{vm.blur ? "Remove Blur":"Add Blur"}}</button>
     </form>
   </body>
 </html>

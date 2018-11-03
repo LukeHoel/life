@@ -3,6 +3,9 @@ myApp.controller('lifeController', ['$scope', '$interval', function($scope, $int
   var vm = this;
   vm.size = 50;
   vm.interval = 10;
+  vm.paused = true;
+
+  vm.blur = true;
 
   //generate grid
   vm.initGrid = function(){
@@ -101,6 +104,8 @@ myApp.controller('lifeController', ['$scope', '$interval', function($scope, $int
   }
 
   //start timer
-  $interval(function(){vm.step()}, vm.interval);
+  $interval(function(){
+    if(vm.paused == false){vm.step();}
+  }, vm.interval);
 
 }]);
