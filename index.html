@@ -10,19 +10,33 @@
       body{
         margin:0;
       }
-      table {border: none;}
+      table,form{border: none;display:inline-block;float:left;}
+      form{
+        padding:20px;
+      }
       td{
         width:10px;
         height:10px;
+      }
+      td:hover{
+        background-color:yellow !important;
       }
     </style>
 
     <table cellspacing="0" cellpadding="0">
       <tr ng-repeat="row in vm.grid track by $index">
-        <td ng-repeat="cell in row track by $index" ng-style="{'background-color':cell ? 'yellow':'black'}">
+        <td ng-repeat="cell in row track by $index" ng-style="{'background-color':cell ? 'yellow':'black'}" ng-click="vm.placeConstruct($parent.$index,$index);">
         </td>
       </tr>
     </table>
-
+    <form>
+      Construct
+      <select ng-model="vm.selectedConstruct" ng-init="vm.selectedConstruct = 0">
+        <option ng-repeat="construct in vm.constructs" ng-value="$index">{{construct.name}}</option>
+      </select>
+      <br>
+      <br>
+      <button ng-click="vm.initGrid()">Clear Grid</button>
+    </form>
   </body>
 </html>
