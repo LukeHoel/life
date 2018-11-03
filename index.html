@@ -1,0 +1,28 @@
+<!doctype html>
+<html>
+  <head>
+    <script type="text/javascript" src="angular.min.js"></script>
+    <script src="lifeController.js"></script>
+  </head>
+  <body ng-app="lifeApp" ng-controller="lifeController as vm">
+
+    <style>
+      body{
+        margin:0;
+      }
+      table {border: none;}
+      td{
+        width:10px;
+        height:10px;
+      }
+    </style>
+
+    <table cellspacing="0" cellpadding="0">
+      <tr ng-repeat="row in vm.grid track by $index">
+        <td ng-repeat="cell in row track by $index" ng-style="{'background-color':cell ? 'yellow':'black'}">
+        </td>
+      </tr>
+    </table>
+
+  </body>
+</html>
